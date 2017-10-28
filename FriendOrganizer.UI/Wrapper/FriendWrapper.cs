@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using FriendOrganizer.Model;
@@ -17,40 +18,29 @@ namespace FriendOrganizer.UI.Wrapper
         public string FirstName
         {
             get { return GetValue<string>(); }
-            set
-            {
-                SetValue(value);
-                ValidateProperty(nameof(FirstName));
-            }
+            set { SetValue(value); }
         }
 
         public string LastName
         {
             get { return GetValue<string>(); }
-            set
-            {
-                SetValue(value);
-            }
+            set { SetValue(value); }
         }
 
         public string Email
         {
             get { return GetValue<string>(); }
-            set
-            {
-                SetValue(value);
-            }
+            set { SetValue(value); }
         }
 
-        private void ValidateProperty(string propertyName)
+        protected override IEnumerable<string> ValidateProperty(string propertyName)
         {
-            ClearErrors(propertyName);
             switch (propertyName)
             {
                 case nameof(FirstName):
                     if (string.Equals(FirstName, "Robot", StringComparison.OrdinalIgnoreCase))
                     {
-                        AddError(propertyName, "Robots are not valid friends");
+                        yield return "Robots are not valid friends";
                     }
                     break;
             }
