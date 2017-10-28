@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FriendOrganizer.Model;
-using FriendOrganizer.UI.ViewModel;
-using System.ComponentModel;
-using System.Collections;
 
 namespace FriendOrganizer.UI.Wrapper
 {
-    class FriendWrapper : ViewModelBase, INotifyDataErrorInfo
+    class FriendWrapper : NotifyDataErrorInfoBase
     {
         public FriendWrapper(Friend model)
         {
@@ -64,47 +59,6 @@ namespace FriendOrganizer.UI.Wrapper
                 Model.Email = value;
                 OnPropertyChanged();
             }
-        }
-
-        private Dictionary<string, List<string>> _errorsByProperyname
-            = new Dictionary<string, List<string>>();
-
-        public bool HasErrors => _errorsByProperyname.Any();
-
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
-        public IEnumerable GetErrors(string propertyName)
-        {
-            return _errorsByProperyname.ContainsKey(propertyName)
-                ? _errorsByProperyname[propertyName]
-                : null;
-        }
-
-        private void OnErrorsChanged(string propertyName)
-        {
-            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
-        }
-
-        private void AddError(string propertyName, string error)
-        {
-            if (!_errorsByProperyname.ContainsKey(propertyName))
-            {
-                _errorsByProperyname[propertyName] = new List<string>();
-            }
-            if (!_errorsByProperyname[propertyName].Contains(error))
-            {
-                _errorsByProperyname[propertyName].Add(error);
-                OnErrorsChanged(propertyName);
-            }
-        }
-
-        private void ClearErrors(string propertyName)
-        {
-            if (_errorsByProperyname.ContainsKey(propertyName))
-            {
-                _errorsByProperyname.Remove(propertyName);
-                OnErrorsChanged(propertyName);
-            }
-        }
+        }       
     }
 }
