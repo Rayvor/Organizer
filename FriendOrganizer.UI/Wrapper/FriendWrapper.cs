@@ -45,6 +45,5 @@ namespace FriendOrganizer.UI.Wrapper
                     break;
             }
         }
-
     }
 }
