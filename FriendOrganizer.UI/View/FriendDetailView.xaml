@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:FriendOrganizer.UI.ViewModel"   
-             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300" 
+             d:DataContext="{d:DesignInstance local:FriendDetailViewModel}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -41,14 +42,18 @@
 
         <DockPanel Grid.Row="8" Margin="10">
             <StackPanel DockPanel.Dock="Right">
-                <Button Content="Add" Width="125" Margin="10"/>
-                <Button Content="Remove" Width="125" Margin="10"/>
+                <Button Content="Add" Width="125" Margin="10"
+                        Command="{Binding AddPhoneNumberCommand}"/>
+                <Button Content="Remove" Width="125" Margin="10"
+                        Command="{Binding RemovePhoneNumberCommand}"/>
             </StackPanel>
             <DataGrid ItemsSource="{Binding PhoneNumbers}"
                       SelectedItem="{Binding SelectedPhoneNumber, Mode=TwoWay}"
                       AutoGenerateColumns="False" RowHeaderWidth="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Phone Numbers" Width="*"
+                                        ElementStyle="{StaticResource DataGridColumnStyle}"
+                                        EditingElementStyle="{StaticResource DataGridEditingColumnStyle}"
                                         Binding="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </DataGrid.Columns>
             </DataGrid>
