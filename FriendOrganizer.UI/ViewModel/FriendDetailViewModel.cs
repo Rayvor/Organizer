@@ -154,7 +154,11 @@ namespace FriendOrganizer.UI.ViewModel
 
         private void OnAddPhoneNumberExecute()
         {
-            throw new NotImplementedException();
+            var newNumber = new FriendPhoneNumberWrapper(new FriendPhoneNumber());
+            newNumber.PropertyChanged += FriendPhoneNumberWrapper_PropertyChanged;
+            PhoneNumbers.Add(newNumber);
+            Friend.Model.PhoneNumbers.Add(newNumber.Model);
+            newNumber.Number = "";
         }
 
         private Friend CreateNewFriend()
