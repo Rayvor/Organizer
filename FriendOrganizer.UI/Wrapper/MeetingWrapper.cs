@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FriendOrganizer.UI.Wrapper
 {
-    class MeetingWrapper : ModelWrapper<Meeting>
+    public class MeetingWrapper : ModelWrapper<Meeting>
     {
         public MeetingWrapper(Meeting model) : base(model)
         {
