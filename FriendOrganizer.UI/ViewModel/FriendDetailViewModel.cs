@@ -25,7 +25,6 @@ namespace FriendOrganizer.UI.ViewModel
         private IProgrammingLanguageLookupDataService _programmingLanguageLookupDataService;
         private FriendWrapper _friend;
         private FriendPhoneNumberWrapper _selectedPhoneNumber;
-        private bool _hasChanges;
 
         public FriendDetailViewModel(IFriendRepository friendRepository,
             IEventAggregator eventAggregator,
